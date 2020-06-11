@@ -142,6 +142,7 @@ graph.on('edge:mouseleave', function(e) {
         },
       };
     });
+
     edges.forEach(edge => {
       edge.type = 'quadratic';
       const source = nodeMap.get(edge.source);
@@ -152,7 +153,6 @@ graph.on('edge:mouseleave', function(e) {
           y: origin[1],
         },
       ];
-//      edge.color = source.style.fill;
       edge.style = {
         stroke: '#ababab',
         lineWidth:2,
@@ -184,3 +184,14 @@ function scaleNodeProp(nodes, propName, refPropName, dataRange, outRange) {
     n[propName] = ((n[refPropName] - dataRange[0]) * outLength) / dataLength + outRange[0];
   });
 }
+
+graph.addItem('node', {
+  type: 'circle',
+  x: origin[0],
+  y: origin[1],
+  size: radius * 2 + 10,
+  style: {
+    lineWidth: 3,
+    fillOpacity: 0
+  }
+})
