@@ -1,5 +1,13 @@
-// Import stylesheets
-import "./style.css";
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import { Container, Draggable } from "react-smooth-dnd";
+import arrayMove from "array-move";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import DragHandleIcon from "@material-ui/icons/DragHandle";
 import G6 from "@antv/g6";
 
 const data = {
@@ -165,3 +173,38 @@ graph.addItem("node", {
     fillOpacity: 0
   }
 });
+
+const SortableList = () => {
+  const [items, setItems] = useState([
+    { id: "1", text: "Item 1" },
+    { id: "2", text: "Item 2" },
+    { id: "3", text: "Item 3" },
+    { id: "4", text: "Item 4" }
+  ]);
+
+  const onDrop = ({ removedIndex, addedIndex }) => {
+    setItems(items => arrayMove(items, removedIndex, addedIndex));
+  };
+
+  return (
+    <List>
+      <Container dragHandleSelector=".drag-handle" lockAxis="y" onDrop={onDrop}>
+        {items.map(({ id, text }) => (
+          <Draggable key={id}>
+            <ListItem>
+              <ListItemText primary={text} />
+              <ListItemSecondaryAction>
+                <ListItemIcon className="drag-handle">
+                  <DragHandleIcon />
+                </ListItemIcon>
+              </ListItemSecondaryAction>
+            </ListItem>
+          </Draggable>
+        ))}
+      </Container>
+    </List>
+  );
+};
+
+
+ReactDOM.render(<SortableList />, document.getElementById("root"));

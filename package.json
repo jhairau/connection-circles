@@ -1,8 +1,25 @@
 {
-  "name": "typescript",
+  "name": "react-ts",
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "@antv/g6": "^3.5.3"
+    "@antv/g6": "^3.5.3",
+    "@material-ui/core": "^4.10.2",
+    "@material-ui/icons": "^4.9.1",
+    "@types/react": "^16.9.36",
+    "@types/react-dom": "^16.9.8",
+    "array-move": "^2.2.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.8.0",
+    "react-smooth-dnd": "^0.11.1"
+  },
+  "scripts": {
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject"
+  },
+  "devDependencies": {
+    "react-scripts-ts": "latest"
   }
 }
